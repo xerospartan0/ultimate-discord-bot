@@ -1,15 +1,8 @@
 discord.py
+yt-dlp
+youtube_dl
 python-dotenv
-openai
-aiohttp
-Pillow
-\n# Added by upgrade\nyt-dlp\nyoutube_dl\npython-dotenv\n\nflask\nyt-dlp\npytest
-\n# v3 additions\nwavelink==3.0.0\nFlask\nrequests\nstripe\npsycopg2-binary\nredis\n
-# v4 additions
-stripe
-psycopg2-binary
-aioredis
-redis
-itsdangerous
+flask
 pytest
-wavelink
+asyncpg
+psycopg2-binary
