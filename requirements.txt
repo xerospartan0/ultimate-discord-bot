@@ -6,3 +6,4 @@ flask
 pytest
 asyncpg
 psycopg2-binary
+requests
