@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  bot:
+    build: .
+    volumes:
+      - ./:/app
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - PREFIX=${PREFIX:-!}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
+      - DISCORD_REDIRECT_URI=${DISCORD_REDIRECT_URI}
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}
+      - LAVALINK_HOST=lavalink
+      - LAVALINK_PORT=2333
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD}
+      - PG_DSN=dbname=botdb user=bot password=botpass host=postgres
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+      - "5002:5002"
+  lavalink:
+    image: fredboat/lavalink:latest
+    environment:
+      - LAVALINK_SERVER_PORT=2333
+      - LAVALINK_SERVER_PASSWORD=${LAVALINK_PASSWORD}
+    ports:
+      - "2333:2333"
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: bot
+      POSTGRES_PASSWORD: botpass
+      POSTGRES_DB: botdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+volumes:
+  pgdata:

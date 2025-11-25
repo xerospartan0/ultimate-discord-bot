@@ -1,0 +1,1 @@
+Previous v2 zip path (local in this environment): /mnt/data/discord-bot-ultimate-v2.zip\nUse this file path as the source if you need to reference the uploaded zip in external tooling.
