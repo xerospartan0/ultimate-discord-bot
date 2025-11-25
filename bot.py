@@ -76,7 +76,24 @@ def run_dashboard():
 import threading
 threading.Thread(target=run_dashboard).start()
 
-# ==========================
+# ================================
+# Start web dashboard in background
+# ================================
+import threading
+threading.Thread(target=run_dashboard).start()
+
+# ================================
 # Run the bot
-# ==========================
+# ================================
+@bot.event
+async def on_ready():
+    try:
+        synced = await bot.tree.sync()
+        print(f"Slash commands synced: {len(synced)}")
+    except Exception as e:
+        print(f"Failed to sync commands: {e}")
+
+    logger.info(f"Bot ready: {bot.user} (ID: {bot.user.id})")
+
+
 bot.run(DISCORD_TOKEN)
